@@ -1,11 +1,28 @@
 {
-  "title": "Argo CD Multi-Branch Pipeline Setup",
+  "title": "Set Up Two Pipelines with Argo CD",
   "details": {
     "intro": {
       "text": "intro.md",
       "background": "background.sh",
       "foreground": "foreground.sh"
     },
+    "steps": [
+      {
+        "title": "Step 1: Set Up the Repository",
+        "text": "step1/text.md",
+        "code": "step1/verify.sh"
+      },
+      {
+        "title": "Step 2: Create Argo CD Applications",
+        "text": "step2/text.md",
+        "code": "step2/verify.sh"
+      },
+      {
+        "title": "Step 3: Deploy the Pipelines",
+        "text": "step3/text.md",
+        "code": "step3/verify.sh"
+      }
+    ],
     "finish": {
       "text": "finish.md"
     }
