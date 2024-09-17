@@ -31,3 +31,8 @@ kubectl patch deploy argocd-server -n argocd --type='json' -p='[{"op": "add", "p
 # Port-forward to expose the Argo CD server
 echo "Port-forwarding Argo CD server..."
 kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80 &
+
+# Wait a bit for port-forwarding to be established
+sleep 5
+
+echo "Argo CD server is now available 
