@@ -9,10 +9,6 @@ echo "Waiting for Argo CD pods to be ready..."
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-applicationset-controller
 
-# Patch Argo CD to allow insecure HTTP
-echo "Patching Argo CD to allow insecure HTTP..."
-kubectl patch deploy argocd-server -n argocd --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--insecure"}]'
-
 # Restart the Argo CD server to apply the changes
 echo "Restarting Argo CD server..."
 kubectl rollout restart deploy argocd-server -n argocd
