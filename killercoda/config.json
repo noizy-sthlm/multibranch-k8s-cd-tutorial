@@ -17,10 +17,5 @@
   },
   "backend": {
     "imageid": "ubuntu"
-  },
-  "environment": {
-    "install": [
-      "bash setup.sh"
-    ]
   }
 }
