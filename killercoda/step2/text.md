@@ -1,4 +1,4 @@
-Here’s the entire **Step 2** properly formatted for you:
+
 
 ```md
 ## Step 2: Prepare Your Repository
