@@ -1,6 +1,26 @@
 {
-  "title": "Ubuntu simple",
+  "title": "Argo CD Multi-Branch Pipeline Setup",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Install Kubernetes and Argo CD",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
   "backend": {
     "imageid": "ubuntu"
+  },
+  "environment": {
+    "install": [
+      "bash setup.sh"
+    ]
   }
 }
