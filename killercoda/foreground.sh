@@ -98,3 +98,7 @@ echo -e "\nKeep this terminal open to maintain the port-forwarding session.\n"
 
 
 wait
+
+# refresh your browser tow or three times if the page does not load the first time
+
+echo "refresh your browser tow or three times if the page does not load the first time"
