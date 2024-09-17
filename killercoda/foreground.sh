@@ -56,7 +56,7 @@
 # Step 1: Wait for the Argo CD server to be ready before starting any actions
 clear 
 echo "Setting up Argo CD..."
-slep 30
+sleep 20
 
 echo "Waiting for Argo CD setup to complete..."
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server &>/dev/null
@@ -72,7 +72,7 @@ port_forward() {
 
 # Start port-forwarding in the background and retry on failure
 port_forward &
-
+clear
 # Step 2: Wait for the Argo CD initial admin secret to be available
 echo "Waiting for Argo CD admin password secret to be available..."
 while ! kubectl -n argocd get secret argocd-initial-admin-secret &>/dev/null; do
