@@ -1,22 +1,24 @@
 #!/bin/bash
 
-# Setting up Argo CD in the background
+# Step 1: Create the Argo CD namespace
 kubectl create namespace argocd
+
+# Step 2: Install Argo CD
+echo "Installing Argo CD..."
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-# Wait for Argo CD pods to start
-echo "Waiting for Argo CD pods to be ready..."
+# Step 3: Wait for Argo CD server to be available
+echo "Waiting for Argo CD server to be available..."
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server
-kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-applicationset-controller
 
-# Patch Argo CD to allow insecure HTTP
+# Step 4: Patch Argo CD to allow insecure HTTP
 echo "Patching Argo CD to allow insecure HTTP..."
 kubectl patch deploy argocd-server -n argocd --type='json' -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--insecure"}]'
 
-# Restart the Argo CD server to apply the changes
-echo "Restarting Argo CD server..."
+# Step 5: Restart the Argo CD server to apply the changes
+echo "Restarting Argo CD server to apply changes..."
 kubectl rollout restart deploy argocd-server -n argocd
 
-# Wait for Argo CD to restart and be ready
-echo "Waiting for Argo CD server to restart..."
+# Step 6: Wait for Argo CD server to be fully ready again
+echo "Waiting for Argo CD server to be fully ready after the restart..."
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server
