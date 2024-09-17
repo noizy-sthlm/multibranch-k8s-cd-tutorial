@@ -84,6 +84,7 @@ done
 admin_password=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode)
 
 clear
+public_url=$(kubectl get svc argocd-server -n argocd -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
 # Step 4: Display the login credentials to the user
 echo -e "\n\033[1mArgo CD is ready to use.\033[0m"
