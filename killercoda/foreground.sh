@@ -96,6 +96,9 @@ echo -e "Username: \033[1madmin\033[0m"
 echo -e "Password: \033[1m$admin_password\033[0m"
 echo -e "\nKeep this terminal open to maintain the port-forwarding session.\n"
 
+# NOTE 
+echo "############ refresh your browser tow or three times if the page does not load the first time ###############"
+clear
 # Keep the port-forwarding running
 
 
@@ -103,4 +106,3 @@ wait
 
 # refresh your browser tow or three times if the page does not load the first time
 
-echo "refresh your browser tow or three times if the page does not load the first time"
