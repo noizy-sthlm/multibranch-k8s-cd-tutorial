@@ -12,4 +12,5 @@ done
 # Final message to the user
 echo "Argo CD is ready! You can access it at https://localhost:8080"
 echo "Run the following command to retrieve the admin password:"
-echo "kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath=\"{.data.password}\" | base64 --decode"
+echo "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | 
+      ForEach-Object { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) };"
