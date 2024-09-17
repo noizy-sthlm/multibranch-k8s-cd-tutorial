@@ -53,11 +53,14 @@
 
 #!/bin/bash
 
-# Step 1: Function to handle port-forwarding with retry
+# Step 1: Wait for the Argo CD server to be ready before starting any actions
+echo "Waiting for Argo CD setup to complete..."
+kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server &>/dev/null
+
 port_forward() {
-  echo "Starting port-forwarding to expose Argo CD on http://localhost:8080"
-  while true; do
-    kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80
+  echo "Starting port-forwarding to expose Argo CD"
+ while true; do
+    kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80 &>/dev/null
     echo "Port-forwarding failed. Retrying in 5 seconds..."
     sleep 5
   done
