@@ -54,10 +54,6 @@
 #!/bin/bash
 
 # Step 1: Wait for the Argo CD server to be ready before starting any actions
-clear 
-echo "Setting up Argo CD..."
-clear
-
 sleep 15
 
 echo "Waiting for Argo CD setup to complete..."
@@ -66,9 +62,9 @@ kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-se
 port_forward() {
   echo "Starting port-forwarding to expose Argo CD"
  while true; do
-    kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80 &>/dev/null
+    kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80 
     echo "Port-forwarding failed. Retrying in 5 seconds..."
-    sleep 5
+    sleep 2
   done
 }
 

@@ -19,3 +19,5 @@ kubectl rollout restart deploy argocd-server -n argocd &>/dev/null
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server &>/dev/null
 
 clear
+
+echo "Setting up Argo CD..."
