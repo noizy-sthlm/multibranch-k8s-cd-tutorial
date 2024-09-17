@@ -4,8 +4,7 @@
     "difficulty": "intermediate",
     "environment": {
       "ubuntu": {
-        "image": "ubuntu:20.04", 
-        "ports": [ "8080" ]        
+        "image": "ubuntu", 
       }
     },
     "steps": [
