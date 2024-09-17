@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/SMaltin93/Setting-up-a-Multi-Branch-Pipeline-with-Argo-CD.git
     targetRevision: main
-    path: manifests
+    path: manifests/
   destination:
     server: https://kubernetes.default.svc
     namespace: default
