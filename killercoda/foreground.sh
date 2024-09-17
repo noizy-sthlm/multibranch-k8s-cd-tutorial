@@ -56,7 +56,9 @@
 # Step 1: Wait for the Argo CD server to be ready before starting any actions
 clear 
 echo "Setting up Argo CD..."
-sleep 20
+clear
+
+sleep 15
 
 echo "Waiting for Argo CD setup to complete..."
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server &>/dev/null
