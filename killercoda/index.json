@@ -1,15 +1,4 @@
 {
-  "title": "Argo CD Multi-Branch Pipeline Setup",
-  "details": {
-    "intro": {
-      "text": "intro.md",
-      "background": "background.sh",
-      "foreground": "foreground.sh"
-    },
-    "finish": {
-      "text": "finish.md"
-    }
-  },
   "backend": {
     "imageid": "ubuntu"
   }
