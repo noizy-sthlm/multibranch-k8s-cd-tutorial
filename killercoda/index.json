@@ -1,5 +1,31 @@
 {
+  "title": "Argo CD Multi-Branch Pipeline Setup",
   "backend": {
     "imageid": "kubernetes-kubeadm-2nodes"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Install Argo CD",
+        "text": "step1/text.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "setup": {
+      "script": "background.sh"
+    },
+    "terminals": [
+      {
+        "name": "Terminal 1",
+        "command": "foreground.sh"
+      }
+    ]
   }
 }
