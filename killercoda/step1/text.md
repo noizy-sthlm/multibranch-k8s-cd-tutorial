@@ -26,7 +26,8 @@ The environment is already set up with Kubernetes and Argo CD installed.
 
      ```bash
 
-     kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
+     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | 
+      ForEach-Object { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) };
 
      ```
 
