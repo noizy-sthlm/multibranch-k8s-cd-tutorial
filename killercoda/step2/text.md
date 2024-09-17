@@ -1,3 +1,4 @@
+Here’s the entire **Step 2** properly formatted for you:
 
 ```md
 ## Step 2: Prepare Your Repository
@@ -5,22 +6,27 @@
 In this step, you will create the necessary directories and files for the Argo CD setup.
 
 ### Instructions:
-1. First, navigate to your repository directory:
+
+1. **Navigate to your repository**:
+   First, navigate to the root directory of your cloned repository:
    ```bash
-   cd ~/your_repo
+   cd <your-repo>
    ```
 
-2. Create two directories: `argo-cd` and `manifests` to store Argo CD and Kubernetes manifest files.
+2. **Create the directories**:
+   Create two directories: `argo-cd` and `manifests` to store Argo CD and Kubernetes manifest files:
    ```bash
    mkdir argo-cd manifests
    ```
 
-3. Inside the `argo-cd` directory, create a file named `application.yaml`:
+3. **Create Argo CD application file for the main branch**:
+   Inside the `argo-cd` directory, create a file named `application.yaml`:
    ```bash
    touch argo-cd/application.yaml
    ```
 
-4. Open the file in a text editor and add the following content:
+4. **Add content to the application.yaml file**:
+   Open the `application.yaml` file and add the following content:
    ```yaml
    apiVersion: argoproj.io/v1alpha1
    kind: Application
@@ -42,12 +48,14 @@ In this step, you will create the necessary directories and files for the Argo C
          selfHeal: true
    ```
 
-5. Similarly, create another file for the `development` branch:
+5. **Create Argo CD application file for the development branch**:
+   Similarly, create another file named `application-dev.yaml`:
    ```bash
    touch argo-cd/application-dev.yaml
    ```
 
-6. Open the `application-dev.yaml` file and add the following content:
+6. **Add content to the application-dev.yaml file**:
+   Open the `application-dev.yaml` file and add the following content:
    ```yaml
    apiVersion: argoproj.io/v1alpha1
    kind: Application
@@ -69,13 +77,15 @@ In this step, you will create the necessary directories and files for the Argo C
          selfHeal: true
    ```
 
-7. Finally, in the `manifests` directory, create the Kubernetes manifest files for a basic NGINX deployment:
+7. **Create Kubernetes manifest files**:
+   Now, in the `manifests` directory, create the Kubernetes manifest files for a basic NGINX deployment:
    ```bash
    touch manifests/nginx-deployment.yaml
    touch manifests/nginx-service.yaml
    ```
 
-8. Add the following content to `nginx-deployment.yaml`:
+8. **Add content to the nginx-deployment.yaml**:
+   Open the `nginx-deployment.yaml` file and add the following:
    ```yaml
    apiVersion: apps/v1
    kind: Deployment
@@ -100,7 +110,8 @@ In this step, you will create the necessary directories and files for the Argo C
            - containerPort: 80
    ```
 
-9. Add the following content to `nginx-service.yaml`:
+9. **Add content to the nginx-service.yaml**:
+   Open the `nginx-service.yaml` file and add the following:
    ```yaml
    apiVersion: v1
    kind: Service
@@ -114,3 +125,12 @@ In this step, you will create the necessary directories and files for the Argo C
        port: 80
        targetPort: 80
    ```
+
+10. **Stage and push the changes**:
+    After making the changes, stage and push the updates to your GitHub repository:
+    ```bash
+    git add .
+    git commit -m "Added Argo CD configuration and NGINX manifests"
+    git push origin main
+    ```
+```

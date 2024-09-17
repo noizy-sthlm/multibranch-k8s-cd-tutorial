@@ -2,23 +2,71 @@
 ```md
 ## Step 1: Prepare the Repository
 
-In this step, you will create the necessary directories to hold your Argo CD configuration and manifests.
+In this step, we will walk through the process of setting up the necessary directories and files for Argo CD configuration. You can either create the repository manually or use the terminal commands to automate this setup.
 
 ### Instructions:
-1. Navigate to your working directory:
+
+1. **Create a new GitHub repository**:
+   - [Go to GitHub](https://github.com) and create a new repository with a suitable name (e.g., `argo-cd-multi-branch-pipeline`).
+
+   Alternatively, you can create the repository directly from the terminal using the GitHub CLI (if installed):
    ```bash
-   cd ~/YOUR_REPO
+   gh repo create <your-repo> --public --clone
    ```
 
-2. Create the directories:
+   This command will create and clone the repository in one step. Replace `<your-repo>` with your desired repository name.
+
+2. **Clone the repository**:
+   If you manually created the repository on GitHub, use this command to clone it to your local environment:
    ```bash
-   mkdir -p argo-cd manifests
+   git clone https://github.com/<your-username>/<your-repo>.git
    ```
 
-3. Verify that the directories exist by running:
+   Replace `<your-username>` and `<your-repo>` with your GitHub username and the name of your repository.
+
+3. **Navigate into the repository**:
+   After cloning, navigate into your repository with the following command:
    ```bash
-   ls
+   cd <your-repo>
    ```
 
-Once you've created the directories, click **Next** to proceed.
+4. **Create necessary directories**:
+   In your repository, create the `argo-cd` and `manifests` directories:
+   ```bash
+   mkdir argo-cd manifests
+   ```
+
+5. **Create Argo CD application files**:
+   In the `argo-cd` directory, create two application configuration files—one for the main branch and one for the dev branch:
+   
+   - Create the file for the main branch:
+     ```bash
+     touch argo-cd/application.yaml
+     ```
+
+   - Create the file for the development branch:
+     ```bash
+     touch argo-cd/application-dev.yaml
+     ```
+
+6. **Create Kubernetes manifest files**:
+   Now, let’s create two Kubernetes manifests inside the `manifests` directory:
+
+   - Create the NGINX deployment manifest:
+     ```bash
+     touch manifests/nginx-deployment.yaml
+     ```
+
+   - Create the NGINX service manifest:
+     ```bash
+     touch manifests/nginx-service.yaml
+     ```
+
+7. **Stage and push the changes**:
+   Add and push these files to your GitHub repository:
+   ```bash
+   git add .
+   git commit -m "Added initial directory structure and manifest files"
+   git push origin main
+   ```
 ```
