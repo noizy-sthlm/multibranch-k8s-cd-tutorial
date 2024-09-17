@@ -1,17 +1,6 @@
 {
-    "title": "Argo CD Multi-Branch Pipeline Setup",
-    "description": "Learn how to set up Argo CD with multi-branch pipelines on Kubernetes.",
-    "difficulty": "intermediate",
-    "environment": {
-      "ubuntu": {
-        "image": "ubuntu", 
-      }
-    },
-    "steps": [
-      {
-        "title": "Step 1: Set up Argo CD",
-        "description": "Install Argo CD in Kubernetes and set up multi-branch pipelines."
-      }
-    ]
+    "title": "Ubuntu simple",
+    "backend": {
+      "imageid": "ubuntu"
+    }
   }
-  
