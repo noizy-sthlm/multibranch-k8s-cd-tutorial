@@ -8,6 +8,10 @@
     },
     "steps": [
       {
+        "title": "Introduction",
+        "text": "intro.md"
+      },
+      {
         "title": "Step 1: Set Up the Repository",
         "text": "step1/text.md"
       },
@@ -18,6 +22,10 @@
       {
         "title": "Step 3: Deploy the Pipelines",
         "text": "step3/text.md"
+      },
+      {
+        "title": "Step 4: Log In to Argo CD",
+        "text": "step4/text.md"
       }
     ],
     "finish": {

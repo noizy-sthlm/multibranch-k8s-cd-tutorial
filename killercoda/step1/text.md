@@ -1,31 +1,24 @@
 
-
 ```md
-## Step 1: Set Up the Repository
+## Step 1: Prepare the Repository
 
-In this step, you will:
-
-- Create a GitHub repository to store your manifests.
-- Set up two branches, `main` and `dev`.
+In this step, you will create the necessary directories to hold your Argo CD configuration and manifests.
 
 ### Instructions:
-
-1. Go to your GitHub account and create a new repository.
-2. Clone the repository into your KillerCoda environment:
-   
+1. Navigate to your working directory:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
+   cd ~/YOUR_REPO
    ```
 
-3. Create two branches for the pipeline:
-
+2. Create the directories:
    ```bash
-   git checkout -b main
-   git checkout -b dev
+   mkdir -p argo-cd manifests
    ```
 
-Once you've created the branches, click **Next**.
+3. Verify that the directories exist by running:
+   ```bash
+   ls
+   ```
+
+Once you've created the directories, click **Next** to proceed.
 ```
-
-

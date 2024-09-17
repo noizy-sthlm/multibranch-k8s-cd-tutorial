@@ -1,25 +1,26 @@
 
+
+---
+
+### **Step 3: Apply the Pipelines in Argo CD (step3/text.md)**
+
 ```md
-## Step 3: Deploy the Pipelines
+## Step 3: Apply the Pipelines in Argo CD
 
-Now that the Argo CD applications are ready, deploy them.
+Now, you will apply the YAML configurations to Argo CD.
 
-1. Apply the Argo CD application manifests:
-
+### Instructions:
+1. In the `argo-cd` directory, apply the `application-main.yaml` file:
    ```bash
-   kubectl apply -f argo-cd/application-main.yaml
-   kubectl apply -f argo-cd/application-dev.yaml
+   kubectl apply -f application-main.yaml
    ```
 
-2. Check the Argo CD dashboard at [Argo CD URL] and observe the pipelines syncing.
+2. Next, apply the `application-dev.yaml` file:
+   ```bash
+   kubectl apply -f application-dev.yaml
+   ```
 
-Once the pipelines are deployed, click **Finish** to complete the tutorial.
+After applying the files, click **Next** to proceed to login.
 ```
 
-### Content of `finish.md`
-
-```md
-## Congratulations!
-
-You have successfully set up two continuous deployment pipelines with Argo CD for `main` and `dev` branches. Check the Argo CD UI to observe changes being synced automatically from your GitHub repository to your Kubernetes cluster.
-```
+---
