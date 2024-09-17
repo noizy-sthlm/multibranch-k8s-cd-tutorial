@@ -54,6 +54,8 @@
 #!/bin/bash
 
 # Step 1: Wait for the Argo CD server to be ready before starting any actions
+clear 
+echo "Setting up Argo CD..."
 slep 30
 
 echo "Waiting for Argo CD setup to complete..."
@@ -85,7 +87,7 @@ clear
 
 # Step 4: Display the login credentials to the user
 echo -e "\n\033[1mArgo CD is ready to use.\033[0m"
-echo -e "You can access the Argo CD UI at: \033[1mhttp://localhost:8080\033[0m"
+echo -e "You can access the Argo CD UI at: \033[1m$public_url\033[0m"
 echo -e "Use the following credentials to log in:\n"
 echo -e "Username: \033[1madmin\033[0m"
 echo -e "Password: \033[1m$admin_password\033[0m"
