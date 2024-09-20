@@ -50,13 +50,13 @@ In this step, we will walk through the process of setting up the necessary direc
    - Create the NGINX deployment manifest:
 
      ```bash
-     touch manifests/nginx-deployment.yaml
+     touch manifests/FrontEndWebApp-deployment.yaml
      ```
 
    - Create the NGINX service manifest:
 
      ```bash
-     touch manifests/nginx-service.yaml
+     touch manifests/FrontEndWebApp-service.yaml
      ```
 
 7. **Stage and push the changes**:

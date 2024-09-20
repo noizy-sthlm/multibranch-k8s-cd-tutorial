@@ -9,14 +9,14 @@
    apiVersion: argoproj.io/v1alpha1
    kind: Application
    metadata:
-     name: multi-branch-pipeline
+     name: multi-branch-pipeline-main
      namespace: argocd
    spec:
      project: default
      source:
        repoURL: https://github.com/<your-username>/<your-repo>.git
-       targetRevision: main
-       path: manifests/
+       targetRevisio/n: main
+       path: manifests
      destination:
        server: https://kubernetes.default.svc
        namespace: default
@@ -29,7 +29,7 @@
 
 
 3. **Add content to the nginx-deployment.yaml**:
-   Open the `manifests/nginx-deployment.yaml` file and add the following yaml file under config:
+   Open the `manifests/FrontEndWebApp-deployment.yaml` file and add the following yaml file under config:
    ```yaml
    apiVersion: apps/v1
    kind: Deployment
@@ -78,22 +78,29 @@
 
 6. **Time to create a dev branch**:
     After making the changes, stage and push the updates to your main branch
-    git checkout dev
+    ```bash
+    git checkout -b dev
+    ```
 
 
     Now we need to modify some parameters to fit in to our dev pipe
 
-    In `argo-cd/application.yaml` change targetRevision to dev
+    In `argo-cd/application.yaml` change targetRevision, and multi-branch-pipeline-main to multi-branch-pipeline-dev to dev
+    
     ```yaml
-   spec:
-     project: default
-     source:
-       repoURL: https://github.com/<your-username>/<your-repo>.git
-       targetRevision: dev
+        metadata:
+          name: multi-branch-pipeline-dev
+          namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: https://github.com/<your-username>/<your-repo>.git
+          targetRevisio/n: dev
+          path: manifests/
        .
        .
        .
-   ```
+    ```
 
    Modify the manifest file `manifests/nginx-deployment.yaml` to target your development image
     ```yaml 
@@ -118,15 +125,26 @@
            - containerPort: 80
 
 
+7. **Dev branch**:
+  After making the changes, stage and push the updates to your dev branch
+
+
 -**>>>>>>>>>>>>>>>>>>>NOTE<<<<<<<<<<<<<<<<<<<<<**
+
 Make sure that you have images with distinct tags for your two branches, one for development and one for stable deployments
 
-  (F) These can be easiely created by running:
-   
-   ```bash
-    docker build -t <docker-hub-username>/ArgoCD-Tutorial-Image:main
-    docker build -t <docker-hub-username>/ArgoCD-Tutorial-Image:dev
-    docker push <docker-hub-username>/ArgoCD-Tutorial-Image:main
-    docker push <docker-hub-username>/ArgoCD-Tutorial-Image:dev
-   ```
+(F) These can be easiely created by running:
+
+First you have to login by running:
+
+  ```bash
+  docker login 
+  ```
+
+  ```bash
+  docker build -t <docker-hub-username>/ArgoCD-Tutorial-Image-stable
+  docker build -t <docker-hub-username>/ArgoCD-Tutorial-Image-dev
+  docker push ArgoCD-Tutorial-Image-stable
+  docker push ArgoCD-Tutorial-Image-dev
+  ```
 ```

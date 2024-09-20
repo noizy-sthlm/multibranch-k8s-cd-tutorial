@@ -6,7 +6,7 @@ Welcome to the Argo CD tutorial! In this scenario, you will learn how to set up 
 - Then, you'll configure Argo CD to automatically deploy changes to your Kubernetes cluster.
 
 ### Prerequisites:
-- You should have a basic understanding of Git, YAML, and Kubernetes.
+- You should have a basic understanding of Git, and Docker containerization.
 
 Let's get started!!
 

@@ -15,14 +15,15 @@ Now that you have created the necessary files in your repository, it's time to a
    ```
 
 2. **Apply the `application.yaml` file for the main branch**:
-   Apply the Argo CD configuration for the main branch by running the following command (Make sure that you have checked out to your main branch):
+   Apply the Argo CD configuration for the main branch by running the following command (Make sure that you have checked out to your dev branch):
 
    ```bash
    kubectl apply -f application.yaml
    ```
 
    This command will create the Argo CD application for the stable deployment branch.
-   To deploy your test application checkout to your dev branch and run the same command.
+**To deploy your stable application checkout to your main branch and run the same command**
+
 
 4. **Verify that the applications have been created**:
    After applying the configurations, verify that the applications have been created by running:
