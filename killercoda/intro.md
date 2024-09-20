@@ -8,7 +8,7 @@ Welcome to the Argo CD tutorial! In this scenario, you will learn how to set up 
 ### Prerequisites:
 - You should have a basic understanding of Git, YAML, and Kubernetes.
 
-Let's get started!
+Let's get started!!
 
 
 
