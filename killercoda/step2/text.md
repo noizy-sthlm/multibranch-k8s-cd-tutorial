@@ -1,8 +1,8 @@
 
 
-```md
 
 1. **Add content to the application.yaml file**:
+
    Open the `argo-cd/application.yaml` file and add the following content:
 
    ```yaml
@@ -16,7 +16,7 @@
      source:
        repoURL: https://github.com/<your-username>/<your-repo>.git
        targetRevisio/n: main
-       path: manifests
+       path: manifests/
      destination:
        server: https://kubernetes.default.svc
        namespace: default
@@ -28,7 +28,7 @@
    ```
 
 
-3. **Add content to the nginx-deployment.yaml**:
+2. **Add content to the nginx-deployment.yaml**:
    Open the `manifests/frontendwebapp-deployment.yaml` file and add the following yaml file under config:
    ```yaml
    apiVersion: apps/v1
@@ -49,12 +49,12 @@
        spec:
          containers:
          - name: frontendwebapp
-           image: ArgoCD-Tutorial-Image:main
+           image: argocd-tutorial-image-main
            ports:
            - containerPort: 80
    ```
 
-4. **Add content to the nginx-service.yaml**:
+3. **Add content to the nginx-service.yaml**:
    Open the `manifests/frontendwebapp-service.yaml` file and add the following:
 
    ```yaml
@@ -73,10 +73,10 @@
        
    ```
 
-5. **Stage and push the changes**:
+4. **Stage and push the changes**:
     After making the changes, stage and push the updates to your main branch
 
-6. **Time to create a dev branch**:
+5. **Time to create a dev branch**:
     After making the changes, stage and push the updates to your main branch
     ```bash
     git checkout -b dev
@@ -120,16 +120,16 @@
        spec:
          containers:
          - name: frontendwebapp
-           image: ArgoCD-Tutorial-Image:dev
+           image: <docker-hub-username>/argocd-tutorial-image-dev
            ports:
            - containerPort: 80
 
 
-7. **Dev branch**:
-  After making the changes, stage and push the updates to your dev branch
+6. **Dev branch**:
+  After making the changes, stage and push the updates to your dev branch 
 
 
--**>>>>>>>>>>>>>>>>>>>NOTE<<<<<<<<<<<<<<<<<<<<<**
+-**NOTE**
 
 Make sure that you have images with distinct tags for your two branches, one for development and one for stable deployments
 
@@ -141,13 +141,41 @@ Make sure that you have images with distinct tags for your two branches, one for
   And then modify:
 
   ```bash
-    RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
+    # Use an official Ubuntu as a parent image
+    FROM ubuntu:20.04
+
+    # Set environment to non-interactive to prevent prompts
+    ENV DEBIAN_FRONTEND=noninteractive
+
+    # Install necessary tools including Python
+    RUN apt-get update && apt-get install -y \
+        python3 \
+        python3-pip \
         git \
         curl \
         ca-certificates \
         && rm -rf /var/lib/apt/lists/*
 
+    # Copy the Python app into the container
+    COPY app.py /usr/src/app/app.py
+
+    # Set the working directory
+    WORKDIR /usr/src/app
+
+    # Set the command to run the Python app
+    CMD ["python3", "app.py"]
+
   ```
+
+
+Create your app.py 
+
+ ```python
+  # app.py 
+  print("Hello, world!")
+
+  ```
+
 
 First you have to login by running:
 
@@ -156,9 +184,8 @@ First you have to login by running:
   ```
 
   ```bash
-  docker build -t <docker-hub-username>/ArgoCD-Tutorial-Image-stable
-  docker build -t <docker-hub-username>/ArgoCD-Tutorial-Image-dev
-  docker push ArgoCD-Tutorial-Image-stable
-  docker push ArgoCD-Tutorial-Image-dev
+  docker build -t <docker-hub-username>/argocd-tutorial-image-stable .
+  docker build -t <docker-hub-username>/argocd-tutorial-image-dev .
+  docker push <docker-hub-username>/argocd-tutorial-image-stable
+  docker push <docker-hub-username>/argocd-tutorial-image-dev
   ```
-```

@@ -1,7 +1,4 @@
-Here’s the full **Step 3** in markdown format for you:
-
-```md
-## Step 3: Apply the Pipelines in Argo CD
+3. **Step 3: Apply the Pipelines in Argo CD**
 
 Now that you have created the necessary files in your repository, it's time to apply the pipelines to Argo CD.
 
@@ -32,7 +29,7 @@ Now that you have created the necessary files in your repository, it's time to a
    kubectl get applications -n argocd
    ```
 
-   You should see both the `multi-branch-pipeline` and `multi-branch-pipeline-dev` applications listed.
+   You should see both the `multi-branch-pipeline-main` and `multi-branch-pipeline-dev` applications listed.
 
 5. **Monitor the sync status in Argo CD**:
    Go to the Argo CD dashboard to view the sync status of your applications. Argo CD will automatically sync with the manifests in your GitHub repository and apply any changes.

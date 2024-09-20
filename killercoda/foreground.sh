@@ -16,7 +16,7 @@ port_forward() {
     kill -9 $(lsof -t -i:8080) &>/dev/null || true
     
     # Start port-forwarding and wait for it to succeed
-    kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80
+    kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80 &>/dev/null
     echo "Port-forwarding failed. Retrying in 5 seconds..."
     sleep 5
   done
@@ -50,5 +50,10 @@ echo -e "\nKeep this terminal open to maintain the port-forwarding session.\n"
 # NOTE: Tell the user to refresh the browser if it does not load right away
 echo "############ Refresh your browser two or three times if the page does not load the first time ###############"
 
-# Keep the port-forwarding running
+# Keep the port-forwarding running in the background
 wait
+
+# End of script
+
+# let the user know the script has ended
+echo "Now you can use the terminal for other tasks."
