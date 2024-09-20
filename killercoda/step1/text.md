@@ -8,7 +8,8 @@ In this step, we will walk through the process of setting up the necessary direc
 ### Instructions:
 
 1. **Create a new GitHub repository**:
-   - [Go to GitHub](https://github.com) and create a new repository with a suitable name (e.g., `argo-cd-multi-branch-pipeline`) or use this template repository `https://github.com/SMaltin93/tutorial-ArgoCd-multi-branch-pipeline`
+   - [Go to GitHub]({{https://github.com}}) and create a new repository with a suitable name (e.g., `argo-cd-multi-branch-pipeline`) or use this template repository
+   - [tutorial-ArgoCd-multi-branch-pipeline]({{https://github.com/SMaltin93/tutorial-ArgoCd-multi-branch-pipeline}})
 
    This command will create and clone the repository in one step. Replace `<your-repo>` with your desired repository name.
 
