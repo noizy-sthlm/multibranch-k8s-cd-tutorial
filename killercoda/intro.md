@@ -7,6 +7,7 @@ Welcome to the Argo CD tutorial! In this scenario, you will learn how to set up 
 
 ### Prerequisites:
 - You should have a basic understanding of Git, and Docker containerization.
+- Have your GitHub credentials (token) in hand 
 
 Let's get started!!
 

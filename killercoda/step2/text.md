@@ -29,43 +29,43 @@
 
 
 3. **Add content to the nginx-deployment.yaml**:
-   Open the `manifests/FrontEndWebApp-deployment.yaml` file and add the following yaml file under config:
+   Open the `manifests/frontendwebapp-deployment.yaml` file and add the following yaml file under config:
    ```yaml
    apiVersion: apps/v1
    kind: Deployment
    metadata:
-     name: FrontEndWebApp-deployment
+     name: depfrontendwebapp
      labels:
-       app: FrontEndWebApp
+       app: frontendwebapp
    spec:
      replicas: 2
      selector:
        matchLabels:
-         app: FrontEndWebApp
+         app: frontendwebapp
      template:
        metadata:
          labels:
-           app: FrontEndWebApp
+           app: frontendwebapp
        spec:
          containers:
-         - name: FrontEndWebApp
+         - name: frontendwebapp
            image: ArgoCD-Tutorial-Image:main
            ports:
            - containerPort: 80
    ```
 
 4. **Add content to the nginx-service.yaml**:
-   Open the `manifests/nginx-service.yaml` file and add the following:
+   Open the `manifests/frontendwebapp-service.yaml` file and add the following:
 
    ```yaml
 
    apiVersion: v1
    kind: Service
    metadata:
-     name: FrontEndWebApp-service 
+     name: servicefrontendwebapp 
    spec:
      selector:
-       app: FrontEndWebApp
+       app: frontendwebapp 
      ports:
      - protocol: TCP
        port: 80
@@ -102,24 +102,24 @@
        .
     ```
 
-   Modify the manifest file `manifests/nginx-deployment.yaml` to target your development image
+   Modify the manifest file `manifests/frontendwebapp-deployment.yaml` to target your development image
     ```yaml 
    metadata:
-     name: FrontEndWebApp-development
+     name: depfrontendwebapp
      labels:
-       app: FrontEndWebApp
+       app: frontendwebapp 
    spec:
      replicas: 2
      selector:
        matchLabels:
-         app: FrontEndWebApp
+         app: frontendwebapp
      template:
        metadata:
          labels:
-           app: FrontEndWebApp
+           app: frontendwebapp
        spec:
          containers:
-         - name: FrontEndWebApp
+         - name: frontendwebapp
            image: ArgoCD-Tutorial-Image:dev
            ports:
            - containerPort: 80
@@ -134,6 +134,20 @@
 Make sure that you have images with distinct tags for your two branches, one for development and one for stable deployments
 
 (F) These can be easiely created by running:
+ ```bash
+  nano Docker
+
+  ```
+  And then modify:
+
+  ```bash
+    RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
+        git \
+        curl \
+        ca-certificates \
+        && rm -rf /var/lib/apt/lists/*
+
+  ```
 
 First you have to login by running:
 
