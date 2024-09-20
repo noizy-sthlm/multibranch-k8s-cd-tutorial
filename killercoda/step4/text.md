@@ -14,7 +14,7 @@ Now that the pipelines are set up in Argo CD, it's time to log in to the Argo CD
 
 2. **Access the Argo CD dashboard**:
    - Click on the link for **Port 8080** to open the Argo CD dashboard in your browser.
-   - [ArgoCD]({{TRAFFIC_HOST1_8080}})
+[ArgoCD]({{TRAFFIC_HOST1_8080}})
 
 3. **Retrieve the Argo CD credentials**:
    Run the following command in the terminal to get your login credentials:

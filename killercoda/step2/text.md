@@ -15,7 +15,7 @@
      project: default
      source:
        repoURL: https://github.com/<your-username>/<your-repo>.git
-       targetRevisio/n: main
+       targetRevision: main
        path: manifests/
      destination:
        server: https://kubernetes.default.svc
@@ -49,7 +49,7 @@
        spec:
          containers:
          - name: frontendwebapp
-           image: argocd-tutorial-image-main
+           image: <docker-hub-username>/argocd-tutorial-image-main
            ports:
            - containerPort: 80
    ```
@@ -72,61 +72,6 @@
        targetPort: 80
        
    ```
-
-4. **Stage and push the changes**:
-    After making the changes, stage and push the updates to your main branch
-
-5. **Time to create a dev branch**:
-    After making the changes, stage and push the updates to your main branch
-    ```bash
-    git checkout -b dev
-    ```
-
-
-    Now we need to modify some parameters to fit in to our dev pipe
-
-    In `argo-cd/application.yaml` change targetRevision, and multi-branch-pipeline-main to multi-branch-pipeline-dev to dev
-    
-    ```yaml
-        metadata:
-          name: multi-branch-pipeline-dev
-          namespace: argocd
-      spec:
-        project: default
-        source:
-          repoURL: https://github.com/<your-username>/<your-repo>.git
-          targetRevisio/n: dev
-          path: manifests/
-       .
-       .
-       .
-    ```
-
-   Modify the manifest file `manifests/frontendwebapp-deployment.yaml` to target your development image
-    ```yaml 
-   metadata:
-     name: depfrontendwebapp
-     labels:
-       app: frontendwebapp 
-   spec:
-     replicas: 2
-     selector:
-       matchLabels:
-         app: frontendwebapp
-     template:
-       metadata:
-         labels:
-           app: frontendwebapp
-       spec:
-         containers:
-         - name: frontendwebapp
-           image: <docker-hub-username>/argocd-tutorial-image-dev
-           ports:
-           - containerPort: 80
-
-
-6. **Dev branch**:
-  After making the changes, stage and push the updates to your dev branch 
 
 
 -**NOTE**
@@ -189,3 +134,59 @@ First you have to login by running:
   docker push <docker-hub-username>/argocd-tutorial-image-stable
   docker push <docker-hub-username>/argocd-tutorial-image-dev
   ```
+
+4. **Stage and push the changes**:
+    After making the changes, stage and push the updates to your main branch
+
+
+5. **Time to create a dev branch**:
+    After making the changes, stage and push the updates to your main branch
+    ```bash
+    git checkout -b dev
+    ```
+
+    Now we need to modify some parameters to fit in to our dev pipe
+
+    In `argo-cd/application.yaml` change targetRevision, and multi-branch-pipeline-main to multi-branch-pipeline-dev to dev
+    
+    ```yaml
+        metadata:
+          name: multi-branch-pipeline-dev
+          namespace: argocd
+      spec:
+        project: default
+        source:
+          repoURL: https://github.com/<your-username>/<your-repo>.git
+          targetRevisio: dev
+       .
+       .
+       .
+    ```
+
+   Modify the manifest file `manifests/frontendwebapp-deployment.yaml` to target your development image
+    ```yaml 
+   metadata:
+     name: depfrontendwebapp
+     labels:
+       app: frontendwebapp 
+   spec:
+     replicas: 2
+     selector:
+       matchLabels:
+         app: frontendwebapp
+     template:
+       metadata:
+         labels:
+           app: frontendwebapp
+       spec:
+         containers:
+         - name: frontendwebapp
+           image: <docker-hub-username>/argocd-tutorial-image-dev
+           ports:
+           - containerPort: 80
+
+
+6. **Dev branch**:
+  After making the changes, stage and push the updates to your dev branch 
+
+

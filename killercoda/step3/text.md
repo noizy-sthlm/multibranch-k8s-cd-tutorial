@@ -33,6 +33,8 @@ Now that you have created the necessary files in your repository, it's time to a
 
 5. **Monitor the sync status in Argo CD**:
    Go to the Argo CD dashboard to view the sync status of your applications. Argo CD will automatically sync with the manifests in your GitHub repository and apply any changes.
+   
+   Once the pipelines have been applied, proceed to the next step to log in to the Argo CD dashboard.
 
-Once the pipelines have been applied, proceed to the next step to log in to the Argo CD dashboard.
-```
+6. **Automatic Deployment**
+To see that any changes you make gets automatically deployed, the print message in your python program and push your newly built image to your registry. You should see how ArgoCD automatically redeploys your app with the latest image.
