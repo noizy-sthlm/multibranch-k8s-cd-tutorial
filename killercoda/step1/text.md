@@ -1,62 +1,33 @@
+# Prepare your repository
 
-```md
+In this step, we will walk through the process of setting up a git repository with necessary configurationfiles for Argo CD and kubernetes.
 
-## Step 1: Prepare the Repository
+Feeling lazy? We host an allready finnished repository on [https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git](https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s) Just fork and edit it to your liking.
 
-In this step, we will walk through the process of setting up the necessary directories and files for Argo CD configuration. You can either create the repository manually or use the terminal commands to automate this setup.
+## 1. Create a new GitHub repository
+Initiate a public git repository. This is where we will host the configuration files for Argo CD and your Kubernetes application. Initially, we only need a "main" branch which we will refer to as "production".
 
-### Instructions:
-
-1. **Create a new GitHub repository**:
-   - [Go to GitHub]({{https://github.com}}) and create a new repository with a suitable name (e.g., `argo-cd-multi-branch-pipeline`)
-
-   This command will create and clone the repository in one step. Replace `<your-repo>` with your desired repository name.
-
-2. **Clone the repository**:
-   If you manually created the repository on GitHub, use this command to clone it to your local environment:
+## 2. Create necessary directories
+In the repository, create the two directories `argo-cd` and `manifests`. The prior will be where we will store the ArgoCD configuration and the latter will be for the Kubernetes component configurations.
    
-   ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   ```
+## 3. Create Argo CD application files
+In the `argo-cd` directory, create a `application.yaml` file. This will be our application configuration for Argo CD.
+>An application is just an Argo CD abstraction of a group of Kubernetes resources
 
-   Replace `<your-username>` and `<your-repo>` with your GitHub username and the name of your repository.
+## 4. Create Kubernetes manifest files
+In this tutorial, we will set up a dummy web server consisting of one deployment, and one service.
+Now, let’s create two Kubernetes manifests `webapp-deployment.yaml` and `webapp-service.yaml` inside the `manifests` directory:
 
-3. **Navigate into the repository**:
-   After cloning, navigate into your repository with the following command:
+Your repository should look like following:
+```bash
+dummyWeb-ArgoCDk8s/
+├── argo-cd
+│   └── application.yaml
+└── manifests
+    ├── webapp-deployment.yaml
+    └── webapp-service.yaml
 
-   ```bash
-   cd <your-repo>
-   ```
+2 directories, 3 files
+```
 
-4. **Create necessary directories**:
-   In your repository, create the `argo-cd` and `manifests` directories:
-   ```bash
-   mkdir argo-cd manifests
-   ```
 
-5. **Create Argo CD application files**:
-   In the `argo-cd` directory, create two application configuration files—one for the main branch and one for the dev branch:
-   
-   - Create the file for the main branch:
-
-     ```bash
-     touch argo-cd/application.yaml
-     ```
-
-6. **Create Kubernetes manifest files**:
-   Now, let’s create two Kubernetes manifests inside the `manifests` directory:
-
-   - Create the NGINX deployment manifest:
-
-     ```bash
-     touch manifests/frontendwebApp-deployment.yaml
-     ```
-
-   - Create the NGINX service manifest:
-
-     ```bash
-     touch manifests/frontendwebApp-service.yaml
-     ```
-
-7. **Stage and push the changes**:
-   Add and push these files to your main branch:
