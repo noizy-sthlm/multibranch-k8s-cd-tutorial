@@ -1,9 +1,8 @@
 # The configuration
-Following, we will configure a dummy web-app, nothing too complex.
-
+For the actual contents of the 
 
 ## 1. application.yaml
-In the `argo-cd/application.yaml` file, add the following configuration:
+In the `argo-cd/application.yaml` file, write the following:
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -11,13 +10,13 @@ metadata:
   name: dummy-webapp-production
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: webapp=noizysthlm/dummy-webapp:prod
+    argocd-image-updater.argoproj.io/image-list: webapp=noizysthlm/dummy-webapp:prod  #Change to the production image that you pushed before
     argocd-image-updater.argoproj.io/update-strategy: digest
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
   source:
-    repoURL: https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git
+    repoURL: https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git  #Change to your repository
     targetRevision: main
     path: manifests/
   destination:
@@ -30,13 +29,14 @@ spec:
     syncOptions:
     - CreateNamespace=true
 ```
-As you see, ArgoCD applications are configured using the same yaml style manifest as any other Kubernetes component. Some fields of interest here are `spec.source.repoURL` which is the location for the desired state which ArgoCD should 
+***Note that you have to edit the file to your fit where there are comments**
 
-**!>Change spec.source.repoURL to a public repository of yours (you should have forked or created one in the previous step)!<**
+Some fields of interest here are `spec.source.repoURL` which is where you host this repository. Once set up, Argo CD will watch it for any commits that you push and apply them to your cluster. `spec.syncPolicy.selfHeal: true` tells argoCD to revert any manual changes made to the cluster (e.g., using `kubectl`) which do not match the manifest (the desired state) in the repository. Moreover, the fields under `metadata.annotations` tell argocd-image-updater to watch for the latest build of your image with the `:prod` tag. If any such are found, it will edit the deployment manifest (using Kustomize) and write back to your origin repository. This will in turn trigger Argo CD to redeploy the application with the latest image.
+
 
 
 ## 2. webapp-deployment.yaml
-Write the following configuration to `manifests/frontendwebapp-deployment.yaml`:
+Write the following configuration to `manifests/webapp-deployment.yaml`:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -56,11 +56,11 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: noizysthlm/dummy-webapp:prod   #This
+        image: noizysthlm/dummy-webapp:prod   #Change to your image
         ports:
         - containerPort: 5000
 ```
-
+***Note that you have to edit the file to your fit where there are comments**
 
 ## 3. webapp-service.yaml
 Write to `manifests/webapp-service.yaml`:
@@ -77,54 +77,62 @@ spec:
     port: 8888
     targetPort: 5000
 ```
+***Note that you have to edit the file to your fit where there are comments**
 
 ## 4. kustomization.yaml
+And to manifests/kustomize.yaml
 ```yaml
-#Kustomize to enable argo-cd-image-updater to write back new tags
 resources:
   - webapp-deployment.yaml
   - webapp-service.yaml
 
 images:
-  - name: noizysthlm/dummy-webapp
+  - name: noizysthlm/dummy-webapp #Change to your image name
     newTag: "prod"
 ```
+***Note that you have to edit the file to your fit where there are comments**
 
-
->**NOTE**
->For this tutorial, we have provided you with two images on Docker hub for you to use. If you would prefer however, you could edit the configuration to fit another image of your liking. You could also fork the application from ... and edit it to your liking and push it to your own image registry instead.
+**Don't forget to commit and push the changes to your repository**
 
 # A development branch
-## 4. Time to create a dev branch
-After we have completed the setup for our production branch we need to set up our development branch. This is where the developers will push new iterations of their application, to test in an isolated environment befor merging any changes with the main branch. It's not any more complex than a `git checkout -b dev` and a few tweaks of our configuration
+And so we need to set up our development branch.
 
-Now we modify some parameters to fit in to our dev pipe
+## 1. Time to create a dev branch
+After we have written the manifests for our production branch we need to set up our development branch. This is where the developers will push new iterations of their application, to test in an isolated environment befor merging any changes with the main branch. It's not more complex than a `git checkout -b dev` and a few tweaks of our the manifests.
 
-In `argo-cd/application.yaml` edit the application name,`spec.source.targetRevision`, and the target namespace `spec.destination.namespace`:
+## 2. application.yaml
+In `argo-cd/application.yaml` edit the fields that are commented:
 ```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: dummy-webapp-development  #Here
+  name: dummy-webapp-development    #This differs from the production branch
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: webapp=noizysthlm/dummy-webapp:dev  #Differs for each user and branch
+    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
-  project: webapp
+  project: default
   source:
-    repoURL: https://github.com/<your-username>/<your-repo>.git
-    targetRevisio: dev            #Here
+    repoURL: https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git
+    targetRevision: dev   #This differs from the production branch
     path: manifests/
   destination:
     server: https://kubernetes.default.svc
-    namespace: dummy-webapp-development #Here
+    namespace: dummy-webapp-development   #This differs from the production branch
 .
 .
 .
 ```
+## 3. kustomize.yaml
+Also, we need to edit `argo-cd/kustomize.yaml`
 
-...and `targetPort` in `manifests/services/webapp-service.yaml`
 ```yaml
-⫶
-  - protocol: TCP
-    port: 80
-    targetPort: 9999  #This
+...
+images:
+  - name: noizysthlm/dummy-webapp   #Should be your image name
+    newTag: "dev"                   #This differs from the production branch
 ```
 
-**OPS!!!! Don't forget to push the changes to your repository**
+Finally, **don't forget to commit and push the changes to your repository**

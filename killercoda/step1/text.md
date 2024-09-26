@@ -1,22 +1,20 @@
 # Prepare your repository
 
-In this step, we will walk through the process of setting up a git repository with necessary configurationfiles for Argo CD and Kubernetes.
+In this step, we will walk through the process of setting up a git repository with necessary manifests for Argo CD and Kubernetes.
 
-Feeling lazy? We host an allready finnished repository on [https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git](https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s) Just fork and edit it to fit you.
+Feeling lazy? We host a template on [https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git](https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s) Just fork and edit it to your fit.
 
 ## 1. Create a new GitHub repository
-Initiate a public git repository. This is where we will host the configuration files for Argo CD and your Kubernetes application. Initially, we only need a "main" branch which we will refer to as "production".
+Initiate a public git repository. This is where you will host the manifests for your Argo CD applications and your Kubernetes components Initially, we only need a "main" branch which we will refer to as "production".
 
-## 2. Create necessary directories
-In the repository, create the two directories `argo-cd` and `manifests`. The prior will be where we store the application manifest for ArgoCD and the latter for our Kubernetes manifests.
+## 2. The directories
+In the repository, create the two directories `argo-cd` and `manifests`. The prior will be where we store the application manifest for ArgoCD and the latter for our Kubernetes compoents.
    
-## 3. Create Argo CD application files
-In the `argo-cd` directory, create a `application.yaml` file. This will be our application configuration for Argo CD.
->An application is just an Argo CD abstraction of a group of Kubernetes resources
+## 3. Argo CD application manifest
+In the `argo-cd` directory, create a `application.yaml` file.
 
 ## 4. Create Kubernetes manifest files
-In this tutorial, we will set up a dummy web server consisting of one deployment, and one service.
-Now, let’s create two Kubernetes manifests `webapp-deployment.yaml` and `webapp-service.yaml` inside the `manifests` directory as well as the `kustomization.yaml` file:
+In this scenario, we will set up a dummy web server consisting of one deployment, and one service. Therefore, let’s create the manifests `webapp-deployment.yaml`, `webapp-service.yaml`, and `kustomization.yaml` in the `manifests/` directory.
 
 Your repository should have the following structure:
 ```bash
@@ -32,29 +30,31 @@ dummyWeb-ArgoCDk8s/
 ```
 
 ## 5. Prepare your webapp container images
-Before going forward, you should prepare your webapp container image and push them to your public Docker hub registry.
+Before proceeding, you should prepare your web app container image and push them to your Docker hub repository. These will be the image that you will deploy to your cluster during later steps.
 
 ### 5a. Clone the python server and edit the code
-Clone/fork [dummy-webapp](https://github.com/noizy-sthlm/argo-cd-multibranch-pipeline). This repository contains a simple web-server that will print a simple message. You can edit the string in `app.py` to represent a version of your webapp:
+The Github repository [noizy-sthlm/dummy-webapp](https://github.com/noizy-sthlm/dummy-webapp) contains code that you can use to build your image. Just clone it (**but not in to the manifest repository**) and edit the string that it prints. It could be something representing the version of your web-app:
+
 ```bash
 @app.route('/')
 def hello():
-    return ":prod Image v1.0 "
+    return ":production web v1.0 " #This string will be printed
 ```
 
 ### 5b Build and push the "production" image to Docker Hub
-This will be our production webapp that you can now build and push to your Docker image registry:
+Once you have edited the string to fit your production website, build and push the image to Docker Hub:
 
 ```bash
-docker build -t <your-docker-username>/dummy-webapp:prod
-docker push <your-docker-username>/dummy-webapp:prod
+docker build -t <your-namespace/>/dummy-webapp:prod .
+docker push <your-namespace/>/dummy-webapp:prod
 ```
+Note that we use the :prod tag for production builds of the image.
 
 ### 5c Build and push the development image to the Docker Hub
-Imaging that we want a development images with `:dev`, we can
-
+For our development build of the image, choose another string, e.g. `"development web 1.0"`, build and push with a different tag:
 
 ```bash
-docker build -t <your-docker-username>/dummy-webapp:dev
-docker push <your-docker-username>/dummy-webapp:dev
+docker build -t <your-namespace/>dummy-webapp:dev .
+docker push <your-namespace/>dummy-webapp:dev
 ```
+The `:dev` tag will be used for our development builds.
