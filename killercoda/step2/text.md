@@ -8,23 +8,29 @@ In the `argo-cd/application.yaml` file, add the following configuration:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dummy-webapp-production   #Name of the application
+  name: dummy-webapp-production
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: webapp=noizysthlm/dummy-webapp:prod
+    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
-  project: webapp                   #ArgoCD allows you to group applications into projects. The default is 'default'
+  project: default
   source:
-    repoURL: https://github.com/<your-username>/<your-repo>.git  #Here we specify the our git repository that is publicly readable
-    targetRevision: main #For now, we only have one branch. Later, we will set up the development branch as well
-    path: manifests/ #We specify the path of our application configuration here
+    repoURL: https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git
+    targetRevision: main
+    path: manifests/
   destination:
-    server: https://kubernetes.default.svc #We will use our local cluster but you could deploy on any cluster, eveb remote
-    namespace: dummy-webapp-production #Any desired namespace for your deployment
-  syncPolicy:    #Lets us specify how Argo CD should sync the actual state in our cluster with the desired state in the git repository
+    server: https://kubernetes.default.svc
+    namespace: dummy-webapp-production
+  syncPolicy:
     automated:
-      prune: true  #If we delete a component from the repository, Argo CD should delete it from the cluster as well
-      selfHeal: true #Any manual changes (e.g., using cubectl) that do not reflect the desired state in our repo will be overwritten
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
 ```
-As you see, ArgoCD applications are configured using the same yaml style configuration as kubernetes configs.
+As you see, ArgoCD applications are configured using the same yaml style manifest as any other Kubernetes component. Some fields of interest here are `spec.source.repoURL` which is the location for the desired state which ArgoCD should 
 
 **!>Change spec.source.repoURL to a public repository of yours (you should have forked or created one in the previous step)!<**
 
@@ -35,7 +41,7 @@ Write the following configuration to `manifests/frontendwebapp-deployment.yaml`:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dummy-webapp
+  name: dummy-webapp-deployment
   labels:
     app: dummy-webapp
 spec:
@@ -50,9 +56,9 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: noizysthlm/dummy-webapp:1.0
+        image: noizysthlm/dummy-webapp:prod   #This
         ports:
-        - containerPort: 80
+        - containerPort: 5000
 ```
 
 
@@ -68,10 +74,22 @@ spec:
     app: dummy-webapp
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 8888
-
+    port: 8888
+    targetPort: 5000
 ```
+
+## 4. kustomization.yaml
+```yaml
+#Kustomize to enable argo-cd-image-updater to write back new tags
+resources:
+  - webapp-deployment.yaml
+  - webapp-service.yaml
+
+images:
+  - name: noizysthlm/dummy-webapp
+    newTag: "prod"
+```
+
 
 >**NOTE**
 >For this tutorial, we have provided you with two images on Docker hub for you to use. If you would prefer however, you could edit the configuration to fit another image of your liking. You could also fork the application from ... and edit it to your liking and push it to your own image registry instead.
@@ -109,4 +127,4 @@ spec:
     targetPort: 9999  #This
 ```
 
-**don't forget to push the changes to your repository**
+**OPS!!!! Don't forget to push the changes to your repository**

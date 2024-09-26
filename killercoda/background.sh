@@ -18,4 +18,8 @@ kubectl rollout restart deploy argocd-server -n argocd &>/dev/null
 # Step 6: Wait for Argo CD server to be fully ready again (silent)
 kubectl wait --for=condition=available --timeout=600s -n argocd deploy/argocd-server &>/dev/null
 
+# argocd-image-updater
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+
+
 
