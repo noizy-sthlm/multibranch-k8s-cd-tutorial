@@ -1,6 +1,6 @@
 # Prepare your repository
 
-In this step, we will walk you through the process of setting up a git repository with necessary manifests for Argo CD and Kubernetes.
+In this step, we will walk you through the process of setting up a git repository with necessary manifests for Argo CD and Kubernetes. We recommend that you do this from your host instead of inside this virtual machine.
 
 Feeling lazy? We host a template on [https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git](https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s) Just fork and edit it to your fit.
 
