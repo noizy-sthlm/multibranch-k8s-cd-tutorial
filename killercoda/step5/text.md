@@ -2,7 +2,7 @@
 You will now make some changes to your manifests as well as push new image builds and see how Argo CD automatically syncs them to your cluster.
 
 ## Edit the number of replicas
-In your development branch, increase the desired number of replicas in `manifests/webapp-deployment.yaml`:
+In your development branch, increase the desired number of replicas in `manifests/webapp-deployment.yaml`{{}}:
 
 ```bash
 ...
@@ -12,8 +12,9 @@ spec:
 ```
 
 ## Push new image builds to Docker Hub
-You should build and push new builds for both the `:dev` and `:prod` images. These new builds could print something like `"Production image v2.0"` or `"Updated development image v2.0"`.
-*Forgot how to do this? The instructions are on step 1*
+You should build and push new builds for both the `:dev`{{}} and `:prod`{{}} images. These new builds could print something like `"Production image v2.0"`{{}} or `"Updated development image v2.0"`{{}}.
+
+***Forgot how to do this? The instructions are on step 1***
 
 ## Observe the magic of Argo CD
 Now go back to Argo CD and see how it automatically recognizes these changes and updates your deployment. You could select one of the applications and see how the tree structure transforms as new replicas are added and the new images are deployed. You can also see when Argo CD last recognized a change:

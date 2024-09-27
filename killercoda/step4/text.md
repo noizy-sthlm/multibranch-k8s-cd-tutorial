@@ -16,7 +16,7 @@ Run the following command in the terminal to get your Argo CD credentials:
 ## 3. Sign in to Argo CD
 Use the credentials displayed in the terminal to log in.
 
-You should see both the `dummy-webapp-production` and `dummy-webapp-development` applications listed.
+You should see both the `dummy-webapp-production`{{}} and `dummy-webapp-development`{{}} applications listed.
 <img src="./ArgoCD_dashboard.png" style="width: 700px">
 
 Click on either of the apps to see the structure and status of your apps.
@@ -29,10 +29,10 @@ Assuming that you're using GitHub, the simplest option is to generate a *(classi
 <img src="./gitHubtoken.png" style="width: 700px">
 
 ## 4.b Connect your repo to Argo CD
-- In the Argo CD user interface, enter `Settings` on the left-hand bar of the home page and enter `Repositories`.
-- Select `HTTPS` as connection method
-- Click on `+ CONNECT REPO` and enter your repo URL, username and the token as password.
-- Click `CONNECT`
+- In the Argo CD user interface, enter `Settings`{{}} on the left-hand bar of the home page and enter `Repositories`{{}}.
+- Select `HTTPS`{{}} as connection method
+- Click on `+ CONNECT REPO`{{}} and enter your repo URL, username and the token as password.
+- Click `CONNECT`{{}}
 
 <img src="./argoGitRepo.png" style="width: 700px">
 

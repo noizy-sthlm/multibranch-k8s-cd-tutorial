@@ -8,13 +8,13 @@ Feeling lazy? We host a template on [https://github.com/noizy-sthlm/dummyWeb-Arg
 Initiate a public git repository (, or fork our template). This is where you will host the manifests for your Argo CD applications and your Kubernetes components For now, we only need a "main" branch which we will use as our "production" branch. This is where you will deploy your application for production. 
 
 ## 2. The directories
-In the repository, create the two directories `argo-cd` and `manifests`. The prior will be where you will store the application manifest for ArgoCD and the latter for your Kubernetes components.
+In the repository, create the two directories `argo-cd`{{}} and `manifests`{{}}. The prior will be where you will store the application manifest for ArgoCD and the latter for your Kubernetes components.
    
 ## 3. Argo CD application manifest
-In the `argo-cd` directory, create a `application.yaml` file.
+In the `argo-cd`{{}} directory, create a `application.yaml`{{}} file.
 
 ## 4. Create Kubernetes manifest files
-In this scenario, you will set up a dummy web server consisting of one deployment, and one service. Therefore, let’s create the manifests `webapp-deployment.yaml`, `webapp-service.yaml`, and `kustomization.yaml` in the `manifests/` directory.
+In this scenario, you will set up a dummy web server consisting of one deployment, and one service. Therefore, let’s create the manifests `webapp-deployment.yaml`{{}}, `webapp-service.yaml`{{}}, and `kustomization.yaml`{{}} in the `manifests/`{{}} directory.
 
 Your repository should have the following structure:
 ```bash
@@ -51,7 +51,7 @@ docker push <your-namespace/>/dummy-webapp:prod
 Note that we use the :prod tag for production builds of the image.
 
 ### 5c Build and push the development image to the Docker Hub
-For our development build of the image, choose another string, e.g. `"development web 1.0"`, build and push with the `:dev` tag:
+For our development build of the image, choose another string, e.g. `"development web 1.0"`{{}}, build and push with the `:dev`{{}} tag:
 
 ```bash
 docker build -t <your-namespace/>dummy-webapp:dev .
