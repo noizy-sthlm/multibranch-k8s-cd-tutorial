@@ -23,4 +23,16 @@ Now go back to Argo CD and see how it automatically recognizes these changes and
 **Don't try to sync manually, you wan't to see that Argo CD will do it automatically**
 ***Note that it could take up to 5 minutes for these changes to be recognizes. If you don't like waiting, Google on how to use webhooks with Argo CD***
 
+## Visit the new web sites
+Once Argo has finished synchronizing, you can browse to them to see that they are actually deployed of your new image builds.
+
+`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-production 8888:8888 --address 0.0.0.0 &`{{exec}}
+
+[(Click here to access the production site)]({{TRAFFIC_HOST1_8888}})
+
+And our development site:
+`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-development 9999:8888 &`{{exec}}
+
+[(Click here to access the dev site)]({{TRAFFIC_HOST1_9999}})
+
 Click **Finish** when you're done to complete the tutorial.

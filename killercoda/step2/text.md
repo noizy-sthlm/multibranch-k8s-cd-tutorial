@@ -1,8 +1,8 @@
 # The configuration
-For the actual contents of the 
 
 ## 1. application.yaml
 In the `argo-cd/application.yaml` file, write the following:
+
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -28,8 +28,9 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-```
-***Note that you have to edit the file to your fit where there are comments**
+```{{copy}}
+
+***Note that you have to edit the file to your fit where there are comments***
 
 Some fields of interest here are `spec.source.repoURL` which is where you host this repository. Once set up, Argo CD will watch it for any commits that you push and apply them to your cluster. `spec.syncPolicy.selfHeal: true` tells argoCD to revert any manual changes made to the cluster (e.g., using `kubectl`) which do not match the manifest (the desired state) in the repository. Moreover, the fields under `metadata.annotations` tell argocd-image-updater to watch for the latest build of your image with the `:prod` tag. If any such are found, it will edit the deployment manifest (using Kustomize) and write back to your origin repository. This will in turn trigger Argo CD to redeploy the application with the latest image.
 
@@ -60,7 +61,8 @@ spec:
         ports:
         - containerPort: 5000
 ```
-***Note that you have to edit the file to your fit where there are comments**
+
+***Note that you have to edit the file to your fit where there are comments***
 
 ## 3. webapp-service.yaml
 Write to `manifests/webapp-service.yaml`:
