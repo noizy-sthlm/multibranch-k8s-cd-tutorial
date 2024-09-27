@@ -11,7 +11,7 @@ Run the following command in the terminal to get your Argo CD credentials:
 ## 2. Open the Traffic/Port menu
    - In the top right of the Killercoda dashboard and then **Traffic/Port**.
    - Click on the link for **Port 8080** to open the Argo CD dashboard in your browser.
-[(Or you could just click here)]({{TRAFFIC_HOST1_8080}})
+[(Or you could just click here 5 times)]({{TRAFFIC_HOST1_8080}})
 
 ## 3. Sign in to Argo CD
 Use the credentials displayed in the terminal to log in.

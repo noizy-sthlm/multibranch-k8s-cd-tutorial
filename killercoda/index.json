@@ -22,6 +22,10 @@
       {
         "title": "Step 4: Log In to Argo CD",
         "text": "step4/text.md"
+      },
+      {
+        "title": "Step 5: Update your deployment",
+        "text": "step5/text.md"
       }
     ],
     "finish": {

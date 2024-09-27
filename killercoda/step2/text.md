@@ -101,10 +101,10 @@ images:
 And so we need to set up our development branch.
 
 ## 1. Time to create a dev branch
-After we have written the manifests for our production branch we need to set up our development branch. This is where the developers will push new iterations of their application, to test in an isolated environment befor merging any changes with the main branch. It's not more complex than a `git checkout -b dev` and a few tweaks of our the manifests.
+After we have written the manifests for our production branch we need to set up our development branch. This is where the developers will push new iterations of their application, to test in an isolated environment befor merging any changes with the main branch. It's not more complex than a `git checkout -b dev`{{}} and a few tweaks of our the manifests.
 
 ## 2. application.yaml
-In `argo-cd/application.yaml` edit the fields that are commented:
+In `argo-cd/application.yaml`{{}} edit the fields that are commented:
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -130,7 +130,7 @@ spec:
 ```
 
 ## 3. kustomize.yaml
-Also, we need to edit `argo-cd/kustomize.yaml`
+Also, we need to edit `argo-cd/kustomize.yaml`{{}}
 
 ```yaml
 ...

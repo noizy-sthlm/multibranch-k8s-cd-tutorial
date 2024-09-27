@@ -32,7 +32,7 @@ Once Argo has finished synchronizing, you can browse to them to see that they ar
 [(Click here to access the production site)]({{TRAFFIC_HOST1_8888}})
 
 And our development site:
-`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-development 9999:8888 &`{{exec}}
+`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-development 9999:8888 --address 0.0.0.0 &`{{exec}}
 
 [(Click here to access the dev site)]({{TRAFFIC_HOST1_9999}})
 
