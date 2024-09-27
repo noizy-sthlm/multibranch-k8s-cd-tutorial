@@ -1,4 +1,5 @@
 # The configuration
+You will write some manifests for your applications.
 
 ## 1. application.yaml
 In the `argo-cd/application.yaml` file, write the following:
@@ -78,7 +79,8 @@ spec:
   - protocol: TCP
     port: 8888
     targetPort: 5000
-```
+```{{copy}}
+
 ***Note that you have to edit the file to your fit where there are comments**
 
 ## 4. kustomization.yaml
@@ -91,7 +93,8 @@ resources:
 images:
   - name: noizysthlm/dummy-webapp #Change to your image name
     newTag: "prod"
-```
+```{{copy}}
+
 ***Note that you have to edit the file to your fit where there are comments**
 
 **Don't forget to commit and push the changes to your repository**
@@ -127,6 +130,7 @@ spec:
 .
 .
 ```
+
 ## 3. kustomize.yaml
 Also, we need to edit `argo-cd/kustomize.yaml`
 
