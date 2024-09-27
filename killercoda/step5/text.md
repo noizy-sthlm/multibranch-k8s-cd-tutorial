@@ -34,6 +34,6 @@ Once Argo has finished synchronizing, you can browse to them to see that they ar
 And our development site:
 `kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-development 9991:8888 --address 0.0.0.0 &`{{exec}}
 
-[(Click here to access the dev site)]({{TRAFFIC_HOST1_9999}})
+[(Click here to access the dev site)]({{TRAFFIC_HOST1_9991}})
 
 Click **Finish** when you're done to complete the tutorial.

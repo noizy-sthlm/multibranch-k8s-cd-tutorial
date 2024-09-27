@@ -11,7 +11,7 @@ Run the following command in the terminal to get your Argo CD credentials:
 ## 2. Open the Traffic/Port menu
    - In the top right of the Killercoda dashboard and then **Traffic/Port**.
    - Click on the link for **Port 8080** to open the Argo CD dashboard in your browser.
-[(Or you could just click here 5 times)]({{TRAFFIC_HOST1_8080}})
+[(Or you could just click here 6 times)]({{TRAFFIC_HOST1_8080}})
 
 ## 3. Sign in to Argo CD
 Use the credentials displayed in the terminal to log in.
@@ -29,9 +29,10 @@ Assuming that you're using GitHub, the simplest option is to generate a *(classi
 <img src="./gitHubtoken.png" style="width: 700px">
 
 ## 4.b Connect your repo to Argo CD
-- In the Argo CD user interface, enter `Settings`{{}} on the left-hand bar of the home page and enter `Repositories`{{}}.
-- Select `HTTPS`{{}} as connection method
-- Click on `+ CONNECT REPO`{{}} and enter your repo URL, username and the token as password.
+- In the Argo CD user interface, enter `Settings`{{}} on the left-hand bar and enter `Repositories`{{}}.
+- Click on `+ CONNECT REPO`{{}}
+- Select `HTTPS`{{}} as connection method and enter your repo URL, username and the github access token as password.
+- Set `type`{{}} to `git`{{}} and `project`{{}} to `default`{{}}
 - Click `CONNECT`{{}}
 
 <img src="./argoGitRepo.png" style="width: 700px">

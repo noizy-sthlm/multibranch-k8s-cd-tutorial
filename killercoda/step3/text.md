@@ -12,7 +12,7 @@ We'll first deploy the production web-app. Grab the url to the application.yaml 
 
 Our production application should (soon) be up and running. Invoke `kubectl`{{}} to see for yourself:
 
-`kubectl get deployments -n dummy-webapp-deployment`{{exec}}
+`kubectl get deployments -n dummy-webapp-production`{{exec}}
 
 Now, do the same but for our development branch. Just copy the link for `application.yaml`{{}} from your development branch on GitHub and use the same commands to deploy.
 
