@@ -27,12 +27,12 @@ Now go back to Argo CD and see how it automatically recognizes these changes and
 ## Visit the new web sites
 Once Argo has finished synchronizing, you can browse to them to see that they are actually deployed of your new image builds.
 
-`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-production 8888:8888 --address 0.0.0.0 &`{{exec}}
+`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-production 8881:8888 --address 0.0.0.0 &`{{exec}}
 
-[(Click here to access the production site)]({{TRAFFIC_HOST1_8888}})
+[(Click here to access the production site)]({{TRAFFIC_HOST1_8881}})
 
 And our development site:
-`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-development 9999:8888 --address 0.0.0.0 &`{{exec}}
+`kubectl port-forward svc/dummy-webapp-service -n dummy-webapp-development 9991:8888 --address 0.0.0.0 &`{{exec}}
 
 [(Click here to access the dev site)]({{TRAFFIC_HOST1_9999}})
 
