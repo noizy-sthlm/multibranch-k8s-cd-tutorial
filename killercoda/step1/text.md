@@ -8,7 +8,7 @@ Feeling lazy? We host a template on [https://github.com/noizy-sthlm/dummyWeb-Arg
 Initiate a public git repository (, or fork our template). This is where you will host the manifests for your Argo CD applications and your Kubernetes components. For now, we only need a "main" branch which we will use as our "production" branch. This is where you will deploy your application for production. 
 
 ## 2. The directories
-In the repository, create the two directories `argo-cd` and `manifests`{{}}. The prior will be where you will store the application manifest for ArgoCD and the latter for your Kubernetes components.
+In the repository, create the two directories `argo-cd`{{}} and `manifests`{{}}. The prior will be where you will store the application manifest for ArgoCD and the latter for your Kubernetes components.
    
 ## 3. Argo CD application manifest
 In the `argo-cd`{{}} directory, create a `application.yaml`{{}} file.
