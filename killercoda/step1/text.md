@@ -1,11 +1,11 @@
 # Prepare your repository
 
-In this step, we will walk you through the process of setting up a git repository with necessary manifests for Argo CD and Kubernetes. We recommend that you do this from your host instead of inside this virtual machine.
+In this step, we will walk you through the process of setting up a git repository with necessary manifests for Argo CD and Kubernetes. We recommend that you create your repository as well as all of the manifests from your host instead of inside this virtual machine. This could help
 
 Feeling lazy? We host a template on [https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s.git](https://github.com/noizy-sthlm/dummyWeb-ArgoCDk8s) Just fork and edit it to your fit.
 
 ## 1. Create a new GitHub repository
-Initiate a public git repository (, or fork our template). This is where you will host the manifests for your Argo CD applications and your Kubernetes components For now, we only need a "main" branch which we will use as our "production" branch. This is where you will deploy your application for production. 
+Initiate a public git repository (, or fork our template). This is where you will host the manifests for your Argo CD applications and your Kubernetes components. For now, we only need a "main" branch which we will use as our "production" branch. This is where you will deploy your application for production. 
 
 ## 2. The directories
 In the repository, create the two directories `argo-cd`{{}} and `manifests`{{}}. The prior will be where you will store the application manifest for ArgoCD and the latter for your Kubernetes components.
@@ -30,7 +30,7 @@ dummyWeb-ArgoCDk8s/
 ```
 
 ## 5. Prepare your webapp container images
-Before proceeding, you should prepare two web-app container images and push them to your Docker hub repository. These will be the image that you will use with your deployments during later steps.
+Before proceeding, you should prepare two web-app container image builds and push them to your Docker hub repository. These will be what you will use in your deployments during later steps.
 
 ### 5a. Clone the python server and edit the code
 The Github repository [noizy-sthlm/dummy-webapp](https://github.com/noizy-sthlm/dummy-webapp) contains code that you can use to build your image. Just clone it (**but not in to the manifest repository**) and edit the string that it prints. It could be something representing the version of your web-app:

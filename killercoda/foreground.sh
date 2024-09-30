@@ -50,10 +50,10 @@ echo -e "\nKeep this terminal open to maintain the port-forwarding session.\n"
 # NOTE: Tell the user to refresh the browser if it does not load right away
 echo "############ Refresh your browser two or three times if the page does not load the first time ###############"
 
+# Keep the port-forwarding running in the background
+wait &
+
 # let the user know the script has ended
 echo "Now you can use the terminal for other tasks."
-
-# Keep the port-forwarding running in the background
-wait
 
 
