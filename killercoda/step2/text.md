@@ -82,7 +82,7 @@ spec:
 ```{{copy}}
 
 ## 4. kustomization.yaml
-And to `manifests/kustomize.yaml`:
+And to `manifests/kustomization.yaml`:
 ```yaml
 resources:
   - webapp-deployment.yaml
@@ -129,8 +129,8 @@ spec:
 .
 ```
 
-## 3. kustomize.yaml
-Also, we need to edit `argo-cd/kustomize.yaml`{{}}
+## 3. kustomization.yaml
+Also, we need to edit `manifests/kustomization.yaml`{{}}
 
 ```yaml
 ...
