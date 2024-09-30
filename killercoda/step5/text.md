@@ -22,7 +22,7 @@ Now go back to Argo CD and see how it automatically recognizes these changes and
 <img src="./ArgoCDapplicationStats.png" style="width: 700px">
 
 **Don't try to sync manually, you wan't to see that Argo CD will do it automatically**
-***Note that it could take up to 5 minutes for these changes to be recognizes. If you don't like waiting, Google on how to use webhooks with Argo CD***
+***Note that it could take up to 8 minutes for these changes to be recognizes. If you don't like waiting, Google on how to use webhooks with Argo CD***
 
 ## Visit the new web sites
 Once Argo has finished synchronizing, you can browse to them to see that they are actually deployed of your new image builds.
